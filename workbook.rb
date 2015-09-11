@@ -78,3 +78,67 @@ title = "Flintstone Family Members"
 statement = "The Flintstones Rock"
 frequency = {}
 statement.split("").each { |letter| if frequency[letter] then frequency[letter] += 1 else frequency[letter] = 1 end }
+
+def factors (number)
+  dividend = number
+  divisors = []
+  while dividend > 0
+    divisors << number / dividend if number % dividend == 0
+    dividend -= 1
+  end
+  divisors
+end
+
+def titleize (string)
+  string.split().each do |word|
+    word[0] = word[0].upcase()
+  end.join(" ")
+end
+
+munsters = { 
+  "Herman" => { "age" => 32, "gender" => "male" }, 
+  "Lily" => { "age" => 30, "gender" => "female" }, 
+  "Grandpa" => { "age" => 402, "gender" => "male" }, 
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female"}
+}
+
+munsters.each do |person|
+  case person[1]["age"]
+  when 0..17
+    person[1]["age_group"] = "kid"
+  when 18..64
+    person[1]["age_group"] = "adult"
+  else
+    person[1]["age_group"] = "senior"
+  end
+end
+
+# Quiz 2
+munsters = { 
+  "Herman" => { "age" => 32, "gender" => "male" }, 
+  "Lily" => { "age" => 30, "gender" => "female" }, 
+  "Grandpa" => { "age" => 402, "gender" => "male" }, 
+  "Eddie" => { "age" => 10, "gender" => "male" } 
+}
+
+munsters.map do |person, info|
+  if info["gender"] == "male"
+    info["age"]
+  else
+    0
+  end
+end.reduce(:+)
+
+munsters = { 
+  "Herman" => { "age" => 32, "gender" => "male" }, 
+  "Lily" => { "age" => 30, "gender" => "female" }, 
+  "Grandpa" => { "age" => 402, "gender" => "male" }, 
+  "Eddie" => { "age" => 10, "gender" => "male" },
+  "Marilyn" => { "age" => 23, "gender" => "female"}
+}
+
+munsters.each { |person, info| p "#{person} is a #{info['age']} year old #{info['gender']}" }
+
+sentence = "Humpty Dumpty sat on a wall."
+sentence.split().reverse().join(" ").delete(".")
