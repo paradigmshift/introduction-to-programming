@@ -142,3 +142,45 @@ munsters.each { |person, info| p "#{person} is a #{info['age']} year old #{info[
 
 sentence = "Humpty Dumpty sat on a wall."
 sentence.split().reverse().join(" ").delete(".")
+
+def color_valid(color)
+  if color == 'blue' || color == 'green'
+    true
+  end
+end
+
+# Quiz 1
+
+def call_UUID (x=1)
+  # Generate x UUIDs
+  @hex_notation = ['a','b','c','d','e','f',"0","1","2","3","4","5","6","7","8","9"]
+  results = []
+  def add_hex(hex_string, y)
+    y.times do
+      hex_string += @hex_notation.sample()
+    end
+    hex_string
+  end
+  x.times do
+    hex_string = add_hex("", 8)
+    hex_string << "-"
+    hex_string = add_hex(hex_string, 4)
+    hex_string << "-"
+    hex_string = add_hex(hex_string, 4)
+    hex_string << "-"
+    hex_string = add_hex(hex_string, 4)
+    hex_string << "-"
+    hex_string = add_hex(hex_string, 12)
+    results.push(hex_string)
+  end
+  return results
+end
+
+def dot_separated_ip_address?(input_string)
+  dot_separated_words = input_string.split(".")
+  while dot_separated_words.size == 4 do
+    word = dot_separated_words.pop
+    if !is_a_number?(word) then return false end
+  end
+  return true
+end
